@@ -1,0 +1,9 @@
+'use strict';
+
+module.exports = (server, options) => {
+
+  server.seneca.add({ role: '<%= serviceName %>', cmd: 'defaultCmd' }, (message, next) => {
+
+    next();
+  });
+};

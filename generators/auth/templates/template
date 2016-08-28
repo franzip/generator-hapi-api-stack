@@ -1,0 +1,6 @@
+'use strict';
+
+module.exports = (server, options) => {
+
+  server.auth.strategy('<%= strategyName %>', '<%= pluginName %>', {});
+};

@@ -1,0 +1,22 @@
+{
+    "apps": [
+        {
+            "name": "<%- projectName %>",
+            "script": "current/server.js",
+            "watch": false,
+            "exec_mode": "cluster",
+            "instances": 0,
+            "env_staging": {
+                "NODE_ENV": "staging",
+                "PORT": 3000
+            },
+            "env_production": {
+                "NODE_ENV": "prod",
+                "PORT": 3000
+            },
+            "min_uptime": "20s",
+            "kill_timeout": 5000,
+            "restart_delay": 5000
+        }
+    ]
+}

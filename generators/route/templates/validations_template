@@ -1,0 +1,10 @@
+'use strict';
+
+// const Joi = require('joi');
+// const Config = require('../../runtime/routes').<%= routeName %>;
+
+module.exports = {
+  find: {
+
+  }
+};

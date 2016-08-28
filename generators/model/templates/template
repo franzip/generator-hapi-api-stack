@@ -1,0 +1,17 @@
+'use strict';
+
+module.exports = {
+
+  identity: '<%= modelName %>',
+  tableName: '<%= modelName %>',
+
+  connection: '<%= dbConnectionName %>',
+
+  attributes: {
+  },
+
+  autoPK: true,
+
+  autoCreatedAt: true,
+  autoUpdatedAt: true
+};

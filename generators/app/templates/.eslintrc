@@ -1,0 +1,8 @@
+{
+    "plugins": ["node"],
+    "extends": ["hapi"],
+    "rules": {
+        "indent": ["error", 2],
+        "no-shadow": ["error", { "allow": ["server", "next", "err"] }]
+    }
+}

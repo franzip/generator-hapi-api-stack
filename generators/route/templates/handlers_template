@@ -1,0 +1,8 @@
+'use strict';
+
+module.exports = {
+  find: (request, reply) => {
+
+    return reply('ok');
+  }
+};

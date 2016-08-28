@@ -1,0 +1,67 @@
+{
+  "name": "generator-hapi-api-stack",
+  "version": "1.0.0",
+  "description": "Hapi API generator with ORM, services, job queue, authentication, caching and deployment out of the box",
+  "homepage": "https://github.com/franzip/generator-hapi-api-stack",
+  "author": {
+    "name": "Francesco Pezzella",
+    "email": "franzpezzella@gmail.com",
+    "url": "https://github.com/franzip"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/franzip/generator-hapi-api-stack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/franzip/generator-hapi-api-stack/issues"
+  },
+  "main": "generators/app/index.js",
+  "files": [
+    "generators/app",
+    "generators/auth",
+    "generators/job",
+    "generators/model",
+    "generators/route",
+    "generators/service"
+  ],
+  "keywords": [
+    "hapi",
+    "api",
+    "server",
+    "services",
+    "jobs",
+    "boilerplate",
+    "plugin",
+    "generator",
+    "yeoman",
+    "yo",
+    "yeoman-generator"
+  ],
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "file": "^0.2.2",
+    "jsesc": "^2.2.0",
+    "lodash": "^4.15.0",
+    "npm-whoami": "^1.1.4",
+    "yeoman-generator": "^0.23.0",
+    "yosay": "^1.0.0"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.12",
+    "eslint": "^3.1.1",
+    "eslint-plugin-node": "^2.0.0",
+    "lab": "^11.0.1",
+    "rimraf": "^2.5.4",
+    "yeoman-assert": "^2.0.0",
+    "yeoman-test": "^1.0.0"
+  },
+  "scripts": {
+    "test": "lab -l -L -n eslint -m 5000",
+    "test-cov-html": "lab -l -L -n eslint -m 5000 -r html -o coverage.html",
+    "coveralls": "lab -r lcov | ./node_modules/.bin/coveralls"
+  },
+  "license": "MIT"
+}

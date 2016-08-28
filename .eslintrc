@@ -1,0 +1,9 @@
+{
+    "plugins": ["node"],
+    "extends": ["eslint:recommended", "plugin:node/recommended"],
+    "rules": {
+        "indent": ["error", 2],
+        "no-var": ["error"],
+        "no-console": 0
+    }
+}

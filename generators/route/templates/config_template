@@ -1,0 +1,11 @@
+'use strict';
+
+const Validations = require('../validations/<%= routeName %>');
+const Handlers = require('../handlers/<%= routeName %>');
+
+module.exports = {
+  find: {
+    validate: Validations.find,
+    handler: Handlers.find
+  }
+};

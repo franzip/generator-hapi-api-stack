@@ -1,0 +1,11 @@
+'use strict';
+
+const Config = require('./config/<%= routeName %>');
+
+module.exports = (server, options) => [
+  {
+    method: 'GET',
+    path: '/<%= routeName %>',
+    config: Config.find
+  }
+];
