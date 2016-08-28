@@ -46,11 +46,10 @@
     "jsesc": "^2.2.0",
     "lodash": "^4.15.0",
     "npm-whoami": "^1.1.4",
-    "yeoman-generator": "^0.23.0",
+    "yeoman-generator": "^0.24.1",
     "yosay": "^1.0.0"
   },
   "devDependencies": {
-    "coveralls": "^2.11.12",
     "eslint": "^3.1.1",
     "eslint-plugin-node": "^2.0.0",
     "lab": "^11.0.1",
@@ -60,8 +59,7 @@
   },
   "scripts": {
     "test": "lab -l -L -n eslint -m 5000",
-    "test-cov-html": "lab -l -L -n eslint -m 5000 -r html -o coverage.html",
-    "coveralls": "lab -r lcov | ./node_modules/.bin/coveralls"
+    "test-cov-html": "lab -l -L -n eslint -m 5000 -r html -o coverage.html"
   },
   "license": "MIT"
 }
