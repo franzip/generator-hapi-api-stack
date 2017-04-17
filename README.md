@@ -268,8 +268,6 @@ The following convention is used:
 #### Adding a new route
 Use the [Route Generator](#route-generator) or do it manually by creating a file in the `routes` folder
 
-TODO Link to routes generator
-
 ### runtime
 The `runtime` folder exports a plugin that registers runtime configuration objects under `server.plugins.runtime`.  
 The exported content of `runtime/filename.js` will be available under `server.plugins.runtime.filename`.  
