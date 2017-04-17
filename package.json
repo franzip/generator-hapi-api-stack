@@ -1,6 +1,6 @@
 {
   "name": "generator-hapi-api-stack",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Hapi API generator with ORM, services, job queue, authentication, caching and deployment out of the box",
   "homepage": "https://github.com/franzip/generator-hapi-api-stack",
   "author": {
