@@ -46,8 +46,8 @@
     "jsesc": "^2.5.0",
     "lodash": "^4.17.4",
     "npm-whoami": "^1.1.4",
-    "yeoman-generator": "^0.24.1",
-    "yosay": "^1.0.0"
+    "yeoman-generator": "^1.1.1",
+    "yosay": "^2.0.0"
   },
   "devDependencies": {
     "eslint": "^3.19.0",

@@ -1,15 +1,12 @@
 'use strict';
 
-const yeoman = require('yeoman-generator');
-const jsesc = require('jsesc');
-const path = require('path');
+const Generator = require('yeoman-generator');
 const _ = require('lodash');
+const jsonEscape = require('../../utils/').jsonEscape;
 
-function jsonEscape(str) {
-  return jsesc(str, {quotes: 'double'});
-}
+let config;
 
-module.exports = yeoman.Base.extend({
+module.exports = Generator.extend({
   prompting: function() {
     const prompts = [
       {
@@ -27,15 +24,20 @@ module.exports = yeoman.Base.extend({
     ];
 
     return this.prompt(prompts).then((props) => {
-      this.strategyName = jsonEscape(props.strategyName);
-      this.pluginName = jsonEscape(props.pluginName);
+      config = {
+        strategyName: jsonEscape(props.strategyName),
+        pluginName: jsonEscape(props.pluginName)
+      }
     });
   },
 
   writing: {
     auth: function() {
-      const output = path.join('auth', _.kebabCase(this.strategyName) + '.js');
-      this.template('template', output);
+      this.fs.copyTpl(
+        this.templatePath('template'),
+        this.destinationPath('auth', _.kebabCase(config.strategyName) + '.js'),
+        config
+      );
     }
   }
 });

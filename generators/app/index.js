@@ -1,19 +1,17 @@
 'use strict';
 
-const yeoman = require('yeoman-generator');
+const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const npmWhoami = require('npm-whoami');
-const jsesc = require('jsesc');
 const path = require('path');
 const file = require('file');
 const _ = require('lodash');
+const jsonEscape = require('../../utils/').jsonEscape;
 
-function jsonEscape(str) {
-  return jsesc(str, {quotes: 'double'});
-}
+let config;
 
-module.exports = yeoman.Base.extend({
+module.exports = Generator.extend({
   initializing: function() {
     this.pkg = require('../../package.json');
     this.dirname = path.basename(this.destinationRoot());
@@ -80,17 +78,22 @@ module.exports = yeoman.Base.extend({
     ];
 
     return this.prompt(prompts).then((props) => {
-      this.user = jsonEscape(props.user);
-      this.repo = jsonEscape(props.repo);
-      this.kebabRepoName = _.kebabCase(this.repo);
-      this.description = jsonEscape(props.description);
-      this.author = jsonEscape(props.author);
-      this.projectName = _.camelCase(jsonEscape(props.repo));
-      this.dbName = jsonEscape(props.dbName);
-      this.dbConnectionName = _.camelCase(this.dbName);
+      let apiPrefix = jsonEscape(props.apiPrefix);
+      apiPrefix = apiPrefix === '/' ? '' : apiPrefix;
 
-      const apiPrefix = jsonEscape(props.apiPrefix);
-      this.apiPrefix = apiPrefix === '/' ? '' : apiPrefix;
+      const repo = jsonEscape(props.repo);
+
+      config = {
+        user: jsonEscape(props.user),
+        repo: repo,
+        kebabRepoName: _.kebabCase(repo),
+        description: jsonEscape(props.description),
+        author: jsonEscape(props.author),
+        projectName: _.camelCase(jsonEscape(props.repo)),
+        dbName: jsonEscape(props.dbName),
+        dbConnectionName: _.camelCase(props.dbName),
+        apiPrefix: apiPrefix
+      };
     });
   },
 
@@ -100,8 +103,11 @@ module.exports = yeoman.Base.extend({
       file.walkSync(src, (dirPath, dirs, files) => {
         const relativeDir = path.relative(src, dirPath);
         files.forEach((filename) => {
-          const target = path.join(relativeDir, filename);
-          this.template(target, target);
+          this.fs.copyTpl(
+            this.templatePath(relativeDir, filename),
+            this.destinationPath(relativeDir, filename),
+            config
+          );
         });
       });
     }

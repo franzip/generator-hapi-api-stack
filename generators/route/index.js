@@ -1,16 +1,14 @@
 'use strict';
 
+const Generator = require('yeoman-generator');
 const chalk = require('chalk');
-const yeoman = require('yeoman-generator');
-const jsesc = require('jsesc');
 const path = require('path');
 const _ = require('lodash');
+const jsonEscape = require('../../utils/').jsonEscape;
 
-function jsonEscape(str) {
-  return jsesc(str, {quotes: 'double'});
-}
+let config;
 
-module.exports = yeoman.Base.extend({
+module.exports = Generator.extend({
   prompting: function() {
     const prompts = [
       {
@@ -28,14 +26,16 @@ module.exports = yeoman.Base.extend({
     ];
 
     return this.prompt(prompts).then((props) => {
-      this.routeName = _.camelCase(jsonEscape(props.routeName));
-      this.hasTest = props.hasTest;
+      config = {
+        routeName: _.camelCase(jsonEscape(props.routeName)),
+        hasTest: props.hasTest
+      };
     });
   },
 
   writing: {
     route: function() {
-      const filename = _.kebabCase(this.routeName) + '.js';
+      const filename = _.kebabCase(config.routeName) + '.js';
       const routeFolder = 'routes';
       const testFolder = 'test';
       const folders = ['config', 'handlers', 'validations'];
@@ -47,12 +47,23 @@ module.exports = yeoman.Base.extend({
           }
         });
 
-      if (this.hasTest) {
+      if (config.hasTest) {
         outputs.push({ template: 'test_template', target: path.join(testFolder, filename) });
       }
 
-      this.template('route_template', path.join(routeFolder, filename));
-      _.each(outputs, (output) => this.template(output.template, output.target));
+      this.fs.copyTpl(
+        this.templatePath('route_template'),
+        this.destinationPath(routeFolder, filename),
+        config
+      );
+
+      _.each(outputs, (output) => {
+        this.fs.copyTpl(
+          this.templatePath(output.template),
+          this.destinationPath(output.target),
+          config
+        )
+      });
     }
   },
 

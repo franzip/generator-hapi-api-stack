@@ -1,16 +1,13 @@
 'use strict';
 
-const yeoman = require('yeoman-generator');
-const jsesc = require('jsesc');
-const path = require('path');
+const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const _ = require('lodash');
+const jsonEscape = require('../../utils/').jsonEscape;
 
-function jsonEscape(str) {
-  return jsesc(str, {quotes: 'double'});
-}
+let config;
 
-module.exports = yeoman.Base.extend({
+module.exports = Generator.extend({
   prompting: function() {
     const prompts = [
       {
@@ -29,15 +26,20 @@ module.exports = yeoman.Base.extend({
     ];
 
     return this.prompt(prompts).then((props) => {
-      this.jobName = _.camelCase(jsonEscape(props.jobName));
-      this.jobType = jsonEscape(props.jobType);
+      config = {
+        jobName: _.camelCase(jsonEscape(props.jobName)),
+        jobType: jsonEscape(props.jobType)
+      };
     });
   },
 
   writing: {
     job: function() {
-      const output = path.join('jobs', _.kebabCase(this.jobName) + '.js');
-      this.template(this.jobType, output);
+      this.fs.copyTpl(
+        this.templatePath(config.jobType),
+        this.destinationPath('jobs', _.kebabCase(config.jobName) + '.js'),
+        config
+      );
     }
   },
 
