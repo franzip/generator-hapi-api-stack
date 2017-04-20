@@ -36,7 +36,33 @@ module.exports = {
       'sails-mongo': require('sails-mongo')
     },
     models: require('path').resolve(__dirname, '..', 'models')
-  }
+  },
+
+  good: {
+        ops: {
+            interval: 1000
+        },
+        reporters: {
+            myConsoleReporter: [{
+                module: 'good-squeeze',
+                name: 'Squeeze',
+                args: [{ log: '*', request: '*', response: '*', error: '*' }]
+            }, {
+                module: 'good-console'
+            }, 'stdout'],
+            myFileReporter: [{
+                module: 'good-squeeze',
+                name: 'Squeeze',
+                args: [{ log: '*', request: '*', response: '*', error: '*' }]
+            }, {
+                module: 'good-squeeze',
+                name: 'SafeJson'
+            }, {
+                module: 'good-file',
+                args: ['./sellfast.test.log']
+            }]
+        }
+  } 
 
   // Uncomment to enable job queue in test environment
   // jobs: {
