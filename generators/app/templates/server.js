@@ -42,6 +42,12 @@ const manifest = {
     },
     {
       plugin: {
+        register: 'good',
+        options: Config.good
+      }
+    },      
+    {
+      plugin: {
         register: '../lib'
       }
     }
