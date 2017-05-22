@@ -4,7 +4,7 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const path = require('path');
 const _ = require('lodash');
-const jsonEscape = require('../../utils/').jsonEscape;
+const jsonEscape = require('../utils/').jsonEscape;
 
 let config;
 
