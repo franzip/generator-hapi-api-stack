@@ -43,7 +43,7 @@ describe('generator-hapi-api-stack:auth', () => {
   });
 
   it('fills the authentication file with correct information', (done) => {
-    const regex = new RegExp(`'${prompts.strategyName}'\, '${prompts.pluginName}'\, {}`);
+    const regex = new RegExp(`'${prompts.strategyName}', '${prompts.pluginName}', {}`);
 
     assert.fileContent(expected, regex);
 

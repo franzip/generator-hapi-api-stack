@@ -69,8 +69,8 @@ describe('generator-hapi-api-stack:app', () => {
       'services/index.js',
       'test/index.js',
     ])
-    .map(prefixTemp)
-    .value();
+      .map(prefixTemp)
+      .value();
 
     assert.file(expected);
 
@@ -89,26 +89,26 @@ describe('generator-hapi-api-stack:app', () => {
   it('fills environment config files with correct information', (done) => {
     let expected;
     const dbConnectionName = _.camelCase(prompts.dbName);
-    const regex = new RegExp(`name: '${projectName}'[\\s\\S]*${projectName}[\\s\\S]*${dbConnectionName}: {[\\s\\S]*database: '${prompts.dbName}'[\\s\\S]*\/${prompts.dbName}'[\\s\\S]*apiPrefix: '${prompts.apiPrefix}'`);
-    const testRegex = new RegExp(`name: '${projectName}'[\\s\\S]*${projectName}[\\s\\S]*${dbConnectionName}: {[\\s\\S]*database: 'test'[\\s\\S]*\/test[\\s\\S]*apiPrefix: '${prompts.apiPrefix}'`);
+    const regex = new RegExp(`name: '${projectName}'[\\s\\S]*${projectName}[\\s\\S]*${dbConnectionName}: {[\\s\\S]*database: '${prompts.dbName}'[\\s\\S]*${prompts.dbName}'[\\s\\S]*apiPrefix: '${prompts.apiPrefix}'`);
+    const testRegex = new RegExp(`name: '${projectName}'[\\s\\S]*${projectName}[\\s\\S]*${dbConnectionName}: {[\\s\\S]*database: 'test'[\\s\\S]*test[\\s\\S]*apiPrefix: '${prompts.apiPrefix}'`);
 
     expected = _([
       'config/dev.js',
       'config/staging.js',
       'config/prod.js'
     ])
-    .map(prefixTemp)
-    .map((filePath) => [ filePath, regex ])
-    .value();
+      .map(prefixTemp)
+      .map((filePath) => [ filePath, regex ])
+      .value();
 
     assert.fileContent(expected);
 
     expected = _([
       'config/test.js'
     ])
-    .map(prefixTemp)
-    .map((filePath) => [ filePath, testRegex ])
-    .value();
+      .map(prefixTemp)
+      .map((filePath) => [ filePath, testRegex ])
+      .value();
 
     assert.fileContent(expected);
 

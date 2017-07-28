@@ -46,7 +46,7 @@ describe('generator-hapi-api-stack:job', () => {
 
   it('fills the job file with correct information', (done) => {
 
-    const regex = new RegExp(`\.jobs\.${jobName}\.NAME[\\s\\S]*\.jobs\.${jobName}\.CONFIG`);
+    const regex = new RegExp(`.jobs.${jobName}.NAME[\\s\\S]*.jobs.${jobName}.CONFIG`);
 
     assert.fileContent(expected, regex);
 

@@ -31,8 +31,8 @@ describe('generator-hapi-api-stack:route', () => {
     `routes/validations/${fileName}`,
     `test/${fileName}`
   ])
-  .map(prefixTemp)
-  .value();
+    .map(prefixTemp)
+    .value();
 
   before((done) => {
     helpers.run(path.join(__dirname, '../generators/route'))
@@ -57,12 +57,12 @@ describe('generator-hapi-api-stack:route', () => {
     let file;
 
     file = expected[0];
-    regex = new RegExp(`\.\/config\/${routeName}`);
+    regex = new RegExp(`./config/${routeName}`);
 
     assert.fileContent(file, regex);
 
     file = expected[1];
-    regex = new RegExp(`'\.\.\/validations\/${routeName}'[\\s\\S]*\.\.\/handlers\/${routeName}`);
+    regex = new RegExp(`'../validations/${routeName}'[\\s\\S]*../handlers/${routeName}`);
 
     assert.fileContent(file, regex);
 
@@ -70,7 +70,7 @@ describe('generator-hapi-api-stack:route', () => {
     regex = new RegExp(`.${routeName};`);
 
     file = expected[4];
-    regex = new RegExp(`describe\\('${routeName}'[\\s\\S]*url: '\/${routeName}'`);
+    regex = new RegExp(`describe\\('${routeName}'[\\s\\S]*url: '/${routeName}'`);
 
     done();
   });
