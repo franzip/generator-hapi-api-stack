@@ -47,30 +47,30 @@ module.exports = {
   },
 
   good: {
-        ops: {
-            interval: 1000
-        },
-        reporters: {
-            myConsoleReporter: [{
-                module: 'good-squeeze',
-                name: 'Squeeze',
-                args: [{ log: '*', request: '*', response: '*', error: '*' }]
-            }, {
-                module: 'good-console'
-            }, 'stdout'],
-            myFileReporter: [{
-                module: 'good-squeeze',
-                name: 'Squeeze',
-                args: [{ log: '*', request: '*', response: '*', error: '*' }]
-            }, {
-                module: 'good-squeeze',
-                name: 'SafeJson'
-            }, {
-                module: 'good-file',
-                args: ['./staging.log']
-            }]
-        }
-  },   
+    ops: {
+      interval: 1000
+    },
+    reporters: {
+      myConsoleReporter: [{
+        module: 'good-squeeze',
+        name: 'Squeeze',
+        args: [{ log: '*', request: '*', response: '*', error: '*' }]
+      }, {
+        module: 'good-console'
+      }, 'stdout'],
+      myFileReporter: [{
+        module: 'good-squeeze',
+        name: 'Squeeze',
+        args: [{ log: '*', request: '*', response: '*', error: '*' }]
+      }, {
+        module: 'good-squeeze',
+        name: 'SafeJson'
+      }, {
+        module: 'good-file',
+        args: ['./staging.log']
+      }]
+    }
+  },
 
   jobs: {
     address: 'mongodb://localhost:27017/<%= dbName %>',
