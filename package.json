@@ -22,7 +22,8 @@
     "generators/job",
     "generators/model",
     "generators/route",
-    "generators/service"
+    "generators/service",
+    "utils"
   ],
   "keywords": [
     "hapi",
