@@ -114,6 +114,8 @@ module.exports = Generator.extend({
   },
 
   install: function() {
+    this.spawnCommandSync('git', ['init', '-q']);
+    this.log(`\n\n\nInitialized empty Git repository in ${this.destinationRoot()}`);
     this.installDependencies({
       bower: false,
       npm: true,
