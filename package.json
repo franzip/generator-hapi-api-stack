@@ -53,12 +53,15 @@
   "devDependencies": {
     "eslint": "^4.3.0",
     "eslint-plugin-node": "^5.1.1",
+    "husky": "^0.14.3",
     "lab": "^14.1.1",
     "rimraf": "^2.6.1",
     "yeoman-assert": "^3.0.0",
     "yeoman-test": "^1.7.0"
   },
   "scripts": {
+    "precommit": "npm test",
+    "prepush": "npm test",
     "test": "lab -l -L -n eslint -m 5000",
     "test-cov-html": "lab -l -L -n eslint -m 5000 -r html -o coverage.html"
   },
