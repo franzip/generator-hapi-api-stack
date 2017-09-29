@@ -59,7 +59,7 @@ module.exports = {
         name: 'SafeJson'
       }, {
         module: 'good-file',
-        args: ['./test.log']
+        args: ['./logs/test.log']
       }]
     }
   }

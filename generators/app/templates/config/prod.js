@@ -67,7 +67,7 @@ module.exports = {
         name: 'SafeJson'
       }, {
         module: 'good-file',
-        args: ['./prod.log']
+        args: ['./logs/prod.log']
       }]
     }
   },
