@@ -54,12 +54,14 @@
     "eslint": "^4.3.0",
     "eslint-plugin-node": "^5.1.1",
     "husky": "^0.14.3",
+    "istanbul": "^0.4.5",
     "lab": "^14.1.1",
     "rimraf": "^2.6.1",
     "yeoman-assert": "^3.0.0",
     "yeoman-test": "^1.7.0"
   },
   "scripts": {
+    "eslint": "eslint .",
     "precommit": "npm test",
     "prepush": "npm test",
     "test": "lab -l -L -n eslint -m 5000",
