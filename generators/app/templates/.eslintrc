@@ -2,7 +2,7 @@
     "plugins": ["node"],
     "extends": ["hapi"],
     "rules": {
-        "indent": ["error", 2],
+        "indent": ["error", 2, { "MemberExpression": "off" }],
         "no-shadow": ["error", { "allow": ["server", "next", "err"] }]
     }
 }
