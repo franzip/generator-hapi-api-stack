@@ -5,5 +5,13 @@ node_js:
   - v6
   - v4
 
-after_script:
-  - npm run coveralls
+install:
+  - npm install -g codecov
+  - npm install
+
+before_script:
+  - npm run eslint
+
+script:
+  - istanbul cover ./node_modules/lab/bin/lab --report lcovonly  -- -l
+  - codecov
