@@ -45,7 +45,7 @@ module.exports = Generator.extend({
 
   end: function() {
     const runtimeConfig = `/runtime/jobs.js`;
-    const reminder = `Don't forget to add a '${this.jobName}' property into ${runtimeConfig} file to set up your job!`;
+    const reminder = `Don't forget to add a '${config.jobName}' property into ${runtimeConfig} file to set up your job!`;
     this.log('\n');
     this.log(chalk.bgYellow.white(reminder));
   }

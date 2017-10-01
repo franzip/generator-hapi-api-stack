@@ -2,8 +2,6 @@
 
 'use strict';
 
-const Chalk = require('chalk');
-
 module.exports = (server, agenda) => {
 
   const Pets = server.waterline.collections.pets;
@@ -22,38 +20,39 @@ module.exports = (server, agenda) => {
       if (err) {
         done(err);
       }
+
       done();
     });
   });
 
   agenda.on(`success:${jobName}`, (job) => {
 
-    console.log(Chalk.bgGreen.white(`Job with ID ${job.attrs._id} executed with success`));
+    server.log(['info', 'jobs'], `Job with ID ${job.attrs._id} executed with success`);
 
     // remove manual job once done
     job.remove((err) => {
 
       if (err) {
-        console.log(Chalk.bgRed.white('An error occurred removing the job'));
+        server.log(['error', 'jobs'], 'An error occurred removing the job');
       }
       else {
-        console.log(Chalk.bgGreen.white('Job removed successfully'));
+        server.log(['info', 'jobs'], 'Job removed successfully');
       }
     });
   });
 
   agenda.on(`fail:${jobName}`, (job) => {
 
-    console.log(Chalk.bgRed.white(`An error occurred processing Job with ID ${job.attrs._id}`));
+    server.log(['error', 'jobs'], `An error occurred processing Job with ID ${job.attrs._id}`);
 
     // remove manual job once done
     job.remove((err) => {
 
       if (err) {
-        console.log(Chalk.bgRed.white('An error occurred removing the job'));
+        server.log(['error', 'jobs'], 'An error occurred removing the job');
       }
       else {
-        console.log(Chalk.bgGreen.white('Job removed successfully'));
+        server.log(['info', 'jobs'], 'Job removed successfully');
       }
     });
   });

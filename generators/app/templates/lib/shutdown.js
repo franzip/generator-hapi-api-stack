@@ -1,18 +1,17 @@
 'use strict';
 
-const Chalk = require('chalk');
 const _ = require('lodash');
 
 const gracefulShutdown = (server) => {
 
   if (server.settings.app.env !== 'test') {
-    console.log(Chalk.bgGreen.white('Shutting down...'));
+    server.log(['info', 'shutdown', 'jobs'], 'Shutting down...');
   }
 
   server.jobs && server.jobs.stop(() => {
 
     if (server.settings.app.env !== 'test') {
-      console.log(Chalk.bgGreen.white('Shutting down job queue...'));
+      server.log(['info', 'shutdown', 'jobs'], 'Shutting down job queue...');
     }
 
     process.exit(0);
@@ -22,7 +21,7 @@ const gracefulShutdown = (server) => {
 exports.register = (server, options, next) => {
 
   if (server.settings.app.env !== 'test') {
-    console.log(Chalk.bgGreen.white('Registering shutdown cleanup...'));
+    server.log(['info', 'bootstrap'], 'Registering shutdown cleanup...');
   }
 
   process.on('SIGTERM', _.bind(gracefulShutdown, null, server));

@@ -2,7 +2,6 @@
 
 const Fs = require('fs');
 const Path = require('path');
-const Chalk = require('chalk');
 const _ = require('lodash');
 const Agenda = require('agenda');
 
@@ -32,13 +31,13 @@ exports.register = (server, options, next) => {
 
   agenda.on('error', (err) => {
 
-    console.error(Chalk.bgRed.white(err));
+    server.log(['error', 'jobs'], err);
   });
 
   agenda.on('ready', () => {
 
     if (server.settings.app.env !== 'test') {
-      console.log(Chalk.bgGreen.white('Job queue starting up...'));
+      server.log(['info', 'bootstrap', 'jobs'], 'Job queue starting up...');
     }
 
     const recurringJobs = _(server.plugins.runtime.jobs)

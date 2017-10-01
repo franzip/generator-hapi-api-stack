@@ -22,7 +22,7 @@ describe(('server'), () => {
       expect(err).to.not.exist();
 
       if (err) {
-        done(err);
+        return done(err);
       }
 
       server = srv;

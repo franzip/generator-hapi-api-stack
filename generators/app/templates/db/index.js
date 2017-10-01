@@ -1,6 +1,5 @@
 'use strict';
 
-const Chalk = require('chalk');
 const _ = require('lodash');
 
 exports.register = (server, options, next) => {
@@ -9,7 +8,7 @@ exports.register = (server, options, next) => {
     return next();
   }
 
-  console.log(Chalk.bgGreen.white('Configuring databases...'));
+  server.log(['info', 'bootstrap', 'database'], 'Configuring databases...');
 
   const indexesConfig = require('./indexes');
   const collections = Object.keys(indexesConfig);

@@ -1,6 +1,5 @@
 'use strict';
 
-const Chalk = require('chalk');
 const Boom = require('boom');
 const _ = require('lodash');
 
@@ -71,7 +70,6 @@ const find = function find(query, next) {
   .exec((err, users) => {
 
     if (err) {
-      console.error(Chalk.bgRed.white(err));
       return next(Boom.badImplementation());
     }
     return next(null, users);
@@ -85,7 +83,6 @@ const findOne = function findOne(id, next) {
   .exec((err, user) => {
 
     if (err) {
-      console.error(Chalk.bgRed.white(err));
       return next(Boom.badImplementation());
     }
     if (!user) {
@@ -103,7 +100,6 @@ const findPets = function findPets(id, next) {
   .exec((err, user) => {
 
     if (err) {
-      console.error(Chalk.bgRed.white(err));
       return next(Boom.badImplementation());
     }
     if (!user) {
@@ -121,7 +117,6 @@ const findNotifications = function findNotifications(id, next) {
   .exec((err, user) => {
 
     if (err) {
-      console.error(Chalk.bgRed.white(err));
       return next(Boom.badImplementation());
     }
     if (!user) {
@@ -138,7 +133,6 @@ const create = function create(data, next) {
   .exec((err, user) => {
 
     if (err) {
-      console.error(Chalk.bgRed.white(err));
       return next(Boom.badImplementation());
     }
     return next(null, user);
@@ -152,7 +146,6 @@ const edit = function edit(id, data, next) {
   .exec((err, user) => {
 
     if (err) {
-      console.error(Chalk.bgRed.white(err));
       return next(Boom.badImplementation());
     }
     if (!user.length) {
@@ -168,7 +161,6 @@ const destroy = function destroy(id, next) {
   .destroy({ id }, (err) => {
 
     if (err) {
-      console.error(Chalk.bgRed.white(err));
       return next(Boom.badImplementation());
     }
     return next();
