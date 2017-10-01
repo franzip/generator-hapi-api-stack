@@ -7,7 +7,7 @@ const npmWhoami = require('npm-whoami');
 const path = require('path');
 const file = require('file');
 const _ = require('lodash');
-const jsonEscape = require('../../utils/').jsonEscape;
+const jsonEscape = require('../utils').jsonEscape;
 
 let config;
 
