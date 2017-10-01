@@ -1,6 +1,5 @@
 'use strict';
 
-const Chalk = require('chalk');
 const Path = require('path');
 const Fs = require('fs');
 const _ = require('lodash');
@@ -8,7 +7,7 @@ const _ = require('lodash');
 exports.register = (server, options, next) => {
 
   if (server.settings.app.env !== 'test') {
-    console.log(Chalk.bgGreen.white('Saving runtime configuration...'));
+    server.log(['info', 'bootstrap'], 'Saving runtime configuration...');
   }
 
   let key;

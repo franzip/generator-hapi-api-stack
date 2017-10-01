@@ -1,7 +1,5 @@
 'use strict';
 
-const Chalk = require('chalk');
-
 module.exports = (server, agenda) => {
 
   const jobName = server.plugins.runtime.jobs.<%= jobName %>.NAME;
@@ -13,11 +11,11 @@ module.exports = (server, agenda) => {
   });
 
   agenda.on(`success:${jobName}`, (job) => {
-
+    server.log(['info', 'jobs'], 'Job executed with success');
   });
 
   agenda.on(`fail:${jobName}`, (job) => {
 
-    console.log(Chalk.bgGreen.white(`An error occurred processing Job with ID ${job.attrs._id}`));
+    server.log(['error', 'jobs'], `An error occurred processing Job with ID ${job.attrs._id}`);
   });
 };

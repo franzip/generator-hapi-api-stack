@@ -1,6 +1,5 @@
 'use strict';
 
-const Chalk = require('chalk');
 const Boom = require('boom');
 const _ = require('lodash');
 
@@ -53,7 +52,6 @@ const find = function find(query, next) {
   .exec((err, pets) => {
 
     if (err) {
-      console.error(Chalk.bgRed.white(err));
       return next(Boom.badImplementation());
     }
     return next(null, pets);
@@ -67,7 +65,6 @@ const findOne = function findOne(id, next) {
   .exec((err, pet) => {
 
     if (err) {
-      console.error(Chalk.bgRed.white(err));
       return next(Boom.badImplementation());
     }
     if (!pet) {
@@ -84,7 +81,6 @@ const create = function create(data, next) {
   .exec((err, pet) => {
 
     if (err) {
-      console.error(Chalk.bgRed.white(err));
       return next(Boom.badImplementation());
     }
     return next(null, pet);
@@ -98,7 +94,6 @@ const edit = function edit(id, data, next) {
   .exec((err, pet) => {
 
     if (err) {
-      console.error(Chalk.bgRed.white(err));
       return next(Boom.badImplementation());
     }
     if (!pet.length) {
@@ -114,7 +109,6 @@ const destroy = function destroy(id, next) {
   .destroy({ id }, (err) => {
 
     if (err) {
-      console.error(Chalk.bgRed.white(err));
       return next(Boom.badImplementation());
     }
     return next();

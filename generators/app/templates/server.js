@@ -2,7 +2,6 @@
 
 const Path = require('path');
 const Glue = require('glue');
-const Chalk = require('chalk');
 const Labbable = require('labbable');
 const Config = require('./config');
 const ServerConfig = Config.server.<%= projectName %>;
@@ -76,9 +75,7 @@ Glue.compose(manifest, opts, (err, server) => {
     throw err;
   }
 
-  const bootMessage = `${Chalk.bgGreen.white('Server started with success!')}\n
-${Chalk.bgGreen.white(Config.product.name + ' is listening on')} ${Chalk.white.underline(ServerConfig.uri)}\n
-${Chalk.bgGreen.white('Environment: ' + Config.env)}`;
+  const bootMessage = `Server started with success! ${Config.product.name} is listening on ${ServerConfig.uri}. Environment: ${Config.env}`;
 
   labbable.using(server);
 
@@ -93,9 +90,10 @@ ${Chalk.bgGreen.white('Environment: ' + Config.env)}`;
       if (err) {
         throw err;
       }
+
       setTimeout(() => {
 
-        console.log(bootMessage);
+        server.log(['info', 'bootstrap'], bootMessage);
       }, 2000);
     });
   });
