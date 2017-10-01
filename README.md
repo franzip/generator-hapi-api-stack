@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/franzip/generator-hapi-api-stack.svg?branch=master)](https://travis-ci.org/franzip/generator-hapi-api-stack)
 [![Dependency Status](https://david-dm.org/franzip/generator-hapi-api-stack.svg)](https://david-dm.org/franzip/generator-hapi-api-stack)
 [![DevDependency Status](https://david-dm.org/franzip/generator-hapi-api-stack/dev-status.svg)](https://david-dm.org/franzip/generator-hapi-api-stack?type=dev)
+[![codecov](https://codecov.io/gh/franzip/generator-hapi-api-stack/branch/master/graph/badge.svg)](https://codecov.io/gh/franzip/generator-hapi-api-stack)
 
 An Hapi API generator with ORM, services, job queue, authentication, caching and deployment out of the box.
 
