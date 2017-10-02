@@ -7,8 +7,8 @@ const jsonEscape = require('../../utils/').jsonEscape;
 
 let config;
 
-module.exports = Generator.extend({
-  prompting: function() {
+module.exports = class extends Generator {
+  prompting() {
     const prompts = [
       {
         type: 'input',
@@ -31,22 +31,20 @@ module.exports = Generator.extend({
         jobType: jsonEscape(props.jobType)
       };
     });
-  },
+  }
 
-  writing: {
-    job: function() {
-      this.fs.copyTpl(
-        this.templatePath(config.jobType),
-        this.destinationPath('jobs', _.kebabCase(config.jobName) + '.js'),
-        config
-      );
-    }
-  },
+  writing() {
+    this.fs.copyTpl(
+      this.templatePath(config.jobType),
+      this.destinationPath('jobs', _.kebabCase(config.jobName) + '.js'),
+      config
+    );
+  }
 
-  end: function() {
+  end() {
     const runtimeConfig = `/runtime/jobs.js`;
     const reminder = `Don't forget to add a '${config.jobName}' property into ${runtimeConfig} file to set up your job!`;
     this.log('\n');
     this.log(chalk.bgYellow.white(reminder));
   }
-});
+}

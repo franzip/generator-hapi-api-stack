@@ -6,8 +6,8 @@ const jsonEscape = require('../../utils/').jsonEscape;
 
 let config;
 
-module.exports = Generator.extend({
-  prompting: function() {
+module.exports = class extends Generator {
+  prompting() {
     const prompts = [
       {
         type: 'input',
@@ -29,15 +29,13 @@ module.exports = Generator.extend({
         pluginName: jsonEscape(props.pluginName)
       }
     });
-  },
-
-  writing: {
-    auth: function() {
-      this.fs.copyTpl(
-        this.templatePath('template'),
-        this.destinationPath('auth', _.kebabCase(config.strategyName) + '.js'),
-        config
-      );
-    }
   }
-});
+
+  writing() {
+    this.fs.copyTpl(
+      this.templatePath('template'),
+      this.destinationPath('auth', _.kebabCase(config.strategyName) + '.js'),
+      config
+    );
+  }
+}
