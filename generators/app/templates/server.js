@@ -18,7 +18,8 @@ const manifest = {
   connections: [
     {
       host: ServerConfig.host,
-      port: ServerConfig.port
+      port: ServerConfig.port,
+      labels: ['api']
     }
   ],
 
