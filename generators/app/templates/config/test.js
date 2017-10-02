@@ -36,7 +36,9 @@ module.exports = {
       'sails-mongo': require('sails-mongo')
     },
     models: require('path').resolve(__dirname, '..', 'models')
-  }
+  },
+
+  debug: false
 
   // Uncomment to enable job queue in test environment
   // jobs: {

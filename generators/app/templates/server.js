@@ -11,7 +11,8 @@ ServerConfig.uri = (ServerConfig.tls ? 'https://' : 'http://') +
 
 const manifest = {
   server: {
-    app: Config
+    app: Config,
+    debug: Config.debug
   },
 
   connections: [
