@@ -1,6 +1,7 @@
 'use strict';
 
 const Generator = require('yeoman-generator');
+const fs = require('fs');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const npmWhoami = require('npm-whoami');
@@ -119,5 +120,9 @@ module.exports = class extends Generator {
       npm: true,
       skipInstall: this.options['skip-install']
     });
+  }
+
+  end() {
+    fs.existsSync('./.yo-rc.json') && fs.unlinkSync('./.yo-rc.json');
   }
 }
