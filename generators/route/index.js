@@ -8,8 +8,8 @@ const jsonEscape = require('../../utils/').jsonEscape;
 
 let config;
 
-module.exports = Generator.extend({
-  prompting: function() {
+module.exports = class extends Generator {
+  prompting() {
     const prompts = [
       {
         type: 'input',
@@ -31,46 +31,44 @@ module.exports = Generator.extend({
         hasTest: props.hasTest
       };
     });
-  },
+  }
 
-  writing: {
-    route: function() {
-      const filename = _.kebabCase(config.routeName) + '.js';
-      const routeFolder = 'routes';
-      const testFolder = 'test';
-      const folders = ['config', 'handlers', 'validations'];
-      const outputs = folders
-        .map((folder) => {
-          return {
-            template: `${folder}_template`,
-            target: path.join(routeFolder, folder, filename)
-          }
-        });
-
-      if (config.hasTest) {
-        outputs.push({ template: 'test_template', target: path.join(testFolder, filename) });
-      }
-
-      this.fs.copyTpl(
-        this.templatePath('route_template'),
-        this.destinationPath(routeFolder, filename),
-        config
-      );
-
-      _.each(outputs, (output) => {
-        this.fs.copyTpl(
-          this.templatePath(output.template),
-          this.destinationPath(output.target),
-          config
-        )
+  writing() {
+    const filename = _.kebabCase(config.routeName) + '.js';
+    const routeFolder = 'routes';
+    const testFolder = 'test';
+    const folders = ['config', 'handlers', 'validations'];
+    const outputs = folders
+      .map((folder) => {
+        return {
+          template: `${folder}_template`,
+          target: path.join(routeFolder, folder, filename)
+        }
       });
-    }
-  },
 
-  end: function() {
+    if (config.hasTest) {
+      outputs.push({ template: 'test_template', target: path.join(testFolder, filename) });
+    }
+
+    this.fs.copyTpl(
+      this.templatePath('route_template'),
+      this.destinationPath(routeFolder, filename),
+      config
+    );
+
+    _.each(outputs, (output) => {
+      this.fs.copyTpl(
+        this.templatePath(output.template),
+        this.destinationPath(output.target),
+        config
+      )
+    });
+  }
+
+  end() {
     const runtimeConfig = `/runtime/routes.js`;
     const reminder = `You can add runtime configuration for the route you have just created in '${runtimeConfig}'`;
     this.log('\n');
     this.log(chalk.bgYellow.white(reminder));
   }
-});
+};

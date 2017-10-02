@@ -11,13 +11,13 @@ const jsonEscape = require('../../utils/').jsonEscape;
 
 let config;
 
-module.exports = Generator.extend({
-  initializing: function() {
+module.exports = class extends Generator {
+  initializing() {
     this.pkg = require('../../package.json');
     this.dirname = path.basename(this.destinationRoot());
-  },
+  }
 
-  prompting: function() {
+  prompting() {
     this.log(yosay(
       'Welcome to the ' + chalk.red('Hapi API Generator') + ' generator!'
     ));
@@ -95,25 +95,23 @@ module.exports = Generator.extend({
         apiPrefix: apiPrefix
       };
     });
-  },
+  }
 
-  writing: {
-    app: function() {
-      const src = this.sourceRoot();
-      file.walkSync(src, (dirPath, dirs, files) => {
-        const relativeDir = path.relative(src, dirPath);
-        files.forEach((filename) => {
-          this.fs.copyTpl(
-            this.templatePath(relativeDir, filename),
-            this.destinationPath(relativeDir, filename),
-            config
-          );
-        });
+  writing() {
+    const src = this.sourceRoot();
+    file.walkSync(src, (dirPath, dirs, files) => {
+      const relativeDir = path.relative(src, dirPath);
+      files.forEach((filename) => {
+        this.fs.copyTpl(
+          this.templatePath(relativeDir, filename),
+          this.destinationPath(relativeDir, filename),
+          config
+        );
       });
-    }
-  },
+    });
+  }
 
-  install: function() {
+  install() {
     this.spawnCommandSync('git', ['init', '-q']);
     this.log(`\n\n\nInitialized empty Git repository in ${this.destinationRoot()}`);
     this.installDependencies({
@@ -122,4 +120,4 @@ module.exports = Generator.extend({
       skipInstall: this.options['skip-install']
     });
   }
-});
+}
