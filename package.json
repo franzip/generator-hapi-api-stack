@@ -44,6 +44,7 @@
   "dependencies": {
     "chalk": "^2.1.0",
     "file": "^0.2.2",
+    "hasbin": "^1.2.3",
     "jsesc": "^2.5.1",
     "lodash": "^4.17.4",
     "npm-whoami": "^1.1.4",

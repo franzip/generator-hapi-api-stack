@@ -5,6 +5,7 @@ const fs = require('fs');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const npmWhoami = require('npm-whoami');
+const hasbin = require('hasbin');
 const path = require('path');
 const file = require('file');
 const _ = require('lodash');
@@ -115,9 +116,13 @@ module.exports = class extends Generator {
   install() {
     this.spawnCommandSync('git', ['init', '-q']);
     this.log(`\n\n\nInitialized empty Git repository in ${this.destinationRoot()}`);
+
+    const hasYarn = hasbin.sync('yarn');
+
     this.installDependencies({
       bower: false,
-      npm: true,
+      npm: !hasYarn,
+      yarn: hasYarn ? { force: true } : false ,
       skipInstall: this.options['skip-install']
     });
   }

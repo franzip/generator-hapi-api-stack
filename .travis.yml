@@ -1,9 +1,9 @@
 sudo: false
 language: node_js
 node_js:
-  - v8
-  - v6
-  - v4
+  - "8"
+  - "6"
+  - "4"
 
 install:
   - npm install -g codecov
