@@ -19,7 +19,10 @@ const manifest = {
     {
       host: ServerConfig.host,
       port: ServerConfig.port,
-      labels: ['api']
+      labels: ['api'],
+      routes: {
+        security: true
+      }
     }
   ],
 
