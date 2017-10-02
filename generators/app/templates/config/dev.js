@@ -72,6 +72,11 @@ module.exports = {
     }
   },
 
+  debug: {
+    log: ['implementation', 'error'],
+    request: '*'
+  },
+
   jobs: {
     address: 'mongodb://localhost:27017/<%= dbName %>',
     collection: 'jobs',
