@@ -40,7 +40,7 @@
   "dependencies": {
     "agenda": "^1.0.0",
     "async": "^2.5.0",
-    "boom": "^6.0.0",
+    "boom": "^5.2.0",
     "catbox-memory": "^2.0.4",
     "chairo": "^3.0.0",
     "dogwater": "^2.3.0",
