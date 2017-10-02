@@ -73,4 +73,38 @@ describe(('server'), () => {
       done();
     });
   });
+
+  it('performs header authentication', (done) => {
+
+    server.inject({
+      method: 'POST',
+      url: '/authenticated',
+      headers: { Authorization: 'token 1234', Bearer: 'John' } },
+    (res) => {
+
+      expect(res.statusCode).to.equal(200);
+      expect(res.payload).to.equal('header authenticated!');
+      done();
+    });
+  });
+
+  it('performs query authentication', (done) => {
+
+    server.inject({ method: 'GET', url: '/authenticated?access_token=1234' }, (res) => {
+
+      expect(res.statusCode).to.equal(200);
+      expect(res.payload).to.equal('query authenticated!');
+      done();
+    });
+  });
+
+  it('generates ids', (done) => {
+
+    server.seneca.act({ generate: 'id' }, (err, res) => {
+
+      expect(err).to.not.exist();
+      expect(res.id).to.equal(1);
+      done();
+    });
+  });
 });
