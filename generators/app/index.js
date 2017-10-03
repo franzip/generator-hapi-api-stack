@@ -25,10 +25,13 @@ module.exports = class extends Generator {
     ));
 
     this.username = '';
-    try {
-      this.username = npmWhoami.sync();
-    } catch(e) {
-      console.warn('Error getting npm user name: run `npm login`');
+
+    if (!this.options['skip-whoami']) {
+      try {
+        this.username = npmWhoami.sync();
+      } catch(e) {
+        console.warn('Error getting npm user name: run `npm login`');
+      }
     }
 
     const gitName = this.user.git.name();
