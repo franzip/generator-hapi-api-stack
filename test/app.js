@@ -31,7 +31,7 @@ describe('generator-hapi-api-stack:app', () => {
     helpers.run(path.join(__dirname, '../generators/app'))
       .inDir(tmpFolder)
       .withPrompts(prompts)
-      .withOptions({ 'skip-install': true })
+      .withOptions({ 'skip-install': true, 'skip-whoami': true })
       .on('end', done);
   });
 
