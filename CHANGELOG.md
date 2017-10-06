@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.3.1 - 2017-10-06
+### Fixed
+- `.yo-rc.json` is removed after the project is generated [#7f0d489](https://github.com/franzip/generator-hapi-api-stack/commit/7f0d489cdcefb318b44ca07482259ad0dc6b3689)
+### Changed
+- Update dependencies and fixed wrong package name `shipit` to `shipit-cli` [#24d8d48](https://github.com/franzip/generator-hapi-api-stack/commit/24d8d48db12c9b36ec0f4fbed70002939cb2e367)
+- Migrate to `yeoman-generator` 2 [#22559b5](https://github.com/franzip/generator-hapi-api-stack/commit/22559b5311cfb95e16f7603557f52871610c41d2)
+### Added
+- Add debug level to generated config files [#90b082e](https://github.com/franzip/generator-hapi-api-stack/commit/90b082ef2dee8d42d0ba44b38b35741859f518fb)
+- Label generated hapi server as `api` [#2588a88](https://github.com/franzip/generator-hapi-api-stack/commit/2588a88c741aaf6ff54353be6a46d8d9f2865411)
+- Add security headers by default [#07a8e73](https://github.com/franzip/generator-hapi-api-stack/commit/07a8e738df5dc79835e7d7cf8756482fc2d10e1d)
+- Use yarn to install packages when available [#b763dd5](https://github.com/franzip/generator-hapi-api-stack/commit/b763dd50052442546415f8b3b58c3d3cdc192165)
+
 ## 1.3.0 - 2017-09-30
 ### Fixed
 - Fix missing `utils` folder breaking generator since 1.2.0. See [#7](https://github.com/franzip/generator-hapi-api-stack/issues/7), [#3](https://github.com/franzip/generator-hapi-api-stack/issues/3)
